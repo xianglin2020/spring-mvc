@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--在该配置文件中我们定义有两个属性 message1 和 message2 的 “helloWorld” bean。然后，使用 parent 属性把 “helloIndia” bean 定义为 “helloWorld” bean 的孩子。这个子 bean 继承 message2 的属性，重写 message1 的属性，并且引入一个属性 message3-->
+
+    <bean id="helloWorld" class="jack.integration.HelloWorld">
+        <property name="message1" value="Hello World!"/>
+        <property name="message2" value="Hello Second World!"/>
+    </bean>
+
+    <bean class="jack.integration.HelloIndia" id="india" parent="helloWorld">
+        <property name="message1" value="Hello India!!"/>
+        <property name="message3" value="Namaste India!"/>
+    </bean>
+
+    <!--可以创建一个 Bean 定义模板，不需要花太多功夫它就可以被其他子 bean 定义使用。在定义一个 Bean 定义模板时，你不应该指定类的属性，而应该指定带 true 值的抽象属性-->
+    <!--父 bean 自身不能被实例化，因为它是不完整的，而且它也被明确地标记为抽象的。当一个定义是抽象的，它仅仅作为一个纯粹的模板 bean 定义来使用的，充当子定义的父定义使用。-->
+
+    <bean id="beanTeamplate" abstract="true">
+        <property name="message1" value="message1"/>
+        <property name="message2" value="message2"/>
+        <property name="message3" value="message3"/>
+    </bean>
+
+    <bean id="templete" class="jack.integration.Templete" parent="beanTeamplate">
+    </bean>
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="jack.lifecycle.HelloWorld" id="helloWorld" init-method="init" destroy-method="destroy">
+        <property name="message" value="使用XML配置验证 bean的生命周期"/>
+    </bean>
+
+    <!--<bean class="jack.lifecycle.HelloWorldImp" id="helloWorldImp">-->
+        <!--<property name="message" value="使用接口验证生命周期"/>-->
+    <!--</bean>-->
+
+    <bean class="jack.lifecycle.InitHelloWorld"/>
+</beans>
